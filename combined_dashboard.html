@@ -1,0 +1,112 @@
+
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用電量儀表板</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        h3 {
+            font-size: 1.5em;
+        }
+        /* 链接的样式 */
+        a {
+            text-decoration: none; /* 去除默认的下划线 */
+            color: #007BFF; /* 设置链接颜色 */
+            font-size: 1.2em; /* 增大字体 */
+        }
+
+        /* 鼠标悬停时的高亮效果 */
+        a:hover {
+            color: white; /* 悬停时文本颜色为白色 */
+            background-color: #007BFF; /* 悬停时背景颜色 */
+            padding: 5px; /* 增加内边距 */
+            border-radius: 5px; /* 设置圆角 */
+        }
+    </style>
+</head>
+<body>
+
+    <h1>用電量儀表板</h1>
+    <iframe src="power_consumption_chart.html" width="100%" height="600px" frameborder="0"></iframe>
+    <iframe src="total_power_consumption_and_carbon_emission_sum_chart.html" width="100%" height="600px" frameborder="0"></iframe>
+
+    <h3>查看設備用電分析圖：</h3>
+    <p><a href="total_power_consumption_chart.html" target="_blank">點此查看各設備總用電量直方圖</a></p>
+    <p><a href="power_consumption_pie_chart.html" target="_blank">點此查看各設備總用電量圓餅圖</a></p>
+    <p><a href="total_and_avg_power_consumption_chart.html" target="_blank">點此查看用電趨勢與平均值</a></p>
+    <p><a href="total_power_consumption_and_carbon_emission_bar_chart.html" target="_blank">點此查看每日用電與碳足跡</a></p>
+    <h3>每週迴歸分析</h3>
+    <table border="4">
+        <thead>
+            <tr>
+                <th>Statistic</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>R-squared</td><td>0.1917</td></tr>
+            <tr><td>F-value</td><td>2.3731</td></tr>
+            <tr><td>P-value</td><td>0.153</td></tr>
+            <tr><td>Pearson Correlation</td><td>-0.438</td></tr>
+        </tbody>
+    </table>
+
+    <h3>每週觀測數據</h3>
+    <table border="3">
+        <thead>
+            <tr>
+                <th>觀測日期</th>
+                <th>用電觀察</th>
+                <th>變異數(CV)</th>
+                <th>工作日總耗電(KW)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>Aug12~Aug16</td><td>觀察第一週</td><td>4.633</td><td>17372.185</td></tr>
+            <tr><td>Aug19~Aug23</td><td>觀察第二週</td><td>13.595</td><td>15542.976</td></tr>
+            <tr><td>Aug23~Aug30</td><td>觀察第三週</td><td>8.950</td><td>16415.341</td></tr>
+            <tr><td>Sep2~Sep6</td><td>觀察第四週</td><td>5.219</td><td>16849.200</td></tr>
+            <tr><td>Sep9~Sep13</td><td>觀察第五週</td><td>7.296</td><td>17493.566</td></tr>
+            <tr><td>Sep23~Sep27</td><td>觀察第六週</td><td>8.113</td><td>16728.457</td></tr>
+            <tr><td>Sep30~Oct4</td><td>觀察第七週</td><td>16.827</td><td>15189.577</td></tr>
+            <tr><td>Oct14~Oct18</td><td>觀察第八週</td><td>18.201</td><td>16730.896</td></tr>
+            <tr><td>Oct21~Oct25</td><td>觀察第九週</td><td>12.904</td><td>18059.740</td></tr>
+            <tr><td>Nov3~Nov8</td><td>觀察第十週</td><td>6.678</td><td>18162.461</td></tr>
+            <tr><td>Nov11~Nov15</td><td>觀察第十一週</td><td>7.728</td><td>18643.782</td></tr>
+            <tr><td>Nov18~Nov22</td><td>觀察第十二週</td><td>9.847</td><td>14858.030</td></tr>
+        </tbody>
+    </table>
+
+    <div>
+        <h3>統計結果解析</h3>
+        <p>變異數 (CV) 與工作日總耗電量之間的皮爾森相關係數(Pearson Correlation)為 -0.438，這表示兩者之間存在中等程度的負相關。隨著變異數 (CV) 增加，工作日總耗電量呈下降趨勢。</p>
+
+        <p>1. 三麟印刷碳排監控系統總用電量:  278930.83  kWh</p>
+
+        <p>2. 三麟印刷碳排監控系統總碳排放量:138070.7609 kg CO₂</p>
+
+        <p>3. 變異數 (CV) 的平均值為 9.999，顯示出每週用電量的波動性。較高的變異數可能代表某些週的工作日總耗電量比其他週波動較大。</p>
+
+        <p>4. 工作日總耗電的平均值為 16837.184 kWh，這是每週的工作日平均用電量。</p>
+
+        <p>迴歸方程為：<br> 
+        <strong>Power Consumption = −118.473 × CV + 1802.825 </strong><br>
+        斜率：-118.473，表示變異數每增加1，總耗電量大約減少 -118.473 kWh。<br>
+        截距：1802.825，表示在變異數為 0 時，預測的總耗電量為 181802.825 kWh。</p>
+    </div>
+
+    <div>
+        <h4>耗電量波動性與耗電量相關：</h4>
+        <img src="https://github.com/Sethjesus/Photo/blob/main/Plot.jpg?raw=true" alt="用電量圖與波動性回歸圖">
+    </div>
+
+</body>
+</html>
